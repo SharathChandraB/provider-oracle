@@ -1,4 +1,4 @@
-module github.com/upbound/upjet-provider-template
+module github.com/SharathChandraB/provider-oracle
 
 go 1.19
 

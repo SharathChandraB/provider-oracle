@@ -1,0 +1,9 @@
+apiVersion: core.oracle.upbound.io/v1alpha1
+kind: Vcn
+metadata:
+  name: test-vcn
+spec:
+  forProvider:
+    cidrBlocks: ['172.30.24.10/30']
+    compartmentId: 'ocid1.compartment.oc1..aaaaaaaapnzkuofwd5nhuml3greqavao3vqhhbldqvmc5w66ay7g77gwlq5q'
+    displayName: 'test-vcn'

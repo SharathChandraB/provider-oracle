@@ -15,7 +15,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/terraform"
 
-	"github.com/upbound/upjet-provider-template/apis/v1beta1"
+	"github.com/SharathChandraB/provider-oracle/apis/v1beta1"
 )
 
 const (
@@ -24,7 +24,16 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal oracle credentials as JSON"
+
+	keyTenancyOcid         	= "tenancy_ocid"
+	keyUserOcid            	= "user_ocid"
+	keyPrivateKey          	= "private_key"
+	keyPrivateKeyPath     	= "private_key_path"
+	keyPrivateKeyPassword 	= "private_key_password"
+	keyFingerprint          = "fingerprint"
+	keyRegion               = "region"
+	keyConfigFileProfile  	= "config_file_profile"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -63,10 +72,31 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[keyTenancyOcid]; ok {
+    		ps.Configuration[keyTenancyOcid] = v
+  		}
+  		if v, ok := creds[keyUserOcid]; ok {
+    		ps.Configuration[keyUserOcid] = v
+  		}
+  		if v, ok := creds[keyPrivateKey]; ok {
+    		ps.Configuration[keyPrivateKey] = v
+  		}
+  		if v, ok := creds[keyPrivateKeyPath]; ok {
+    		ps.Configuration[keyPrivateKeyPath] = v
+  		}
+  		if v, ok := creds[keyPrivateKeyPassword]; ok {
+    		ps.Configuration[keyPrivateKeyPassword] = v
+  		}
+  		if v, ok := creds[keyFingerprint]; ok {
+    		ps.Configuration[keyFingerprint] = v
+  		}
+  		if v, ok := creds[keyRegion]; ok {
+    		ps.Configuration[keyRegion] = v
+  		}
+  		if v, ok := creds[keyConfigFileProfile]; ok {
+    		ps.Configuration[keyConfigFileProfile] = v
+  		}
 		return ps, nil
 	}
 }

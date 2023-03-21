@@ -1,0 +1,9 @@
+apiVersion: objectstorage.oracle.upbound.io/v1alpha1
+kind: Bucket
+metadata:
+  name: test-bucket
+spec:
+  forProvider:
+    compartmentId: 'ocid1.compartment.oc1..aaaaaaaapnzkuofwd5nhuml3greqavao3vqhhbldqvmc5w66ay7g77gwlq5q'
+    name: 'testBucket'
+    namespace: 'psmsvc3'

@@ -10,12 +10,13 @@ import (
 
 	ujconfig "github.com/upbound/upjet/pkg/config"
 
-	"github.com/upbound/upjet-provider-template/config/null"
+	"github.com/SharathChandraB/provider-oracle/config/core"
+	"github.com/SharathChandraB/provider-oracle/config/objectstorage"
 )
 
 const (
-	resourcePrefix = "template"
-	modulePath     = "github.com/upbound/upjet-provider-template"
+	resourcePrefix = "oracle"
+	modulePath     = "github.com/SharathChandraB/provider-oracle"
 )
 
 //go:embed schema.json
@@ -34,7 +35,8 @@ func GetProvider() *ujconfig.Provider {
 
 	for _, configure := range []func(provider *ujconfig.Provider){
 		// add custom config functions
-		null.Configure,
+		core.Configure,
+		objectstorage.Configure,
 	} {
 		configure(pc)
 	}
